@@ -1,0 +1,195 @@
+/* Général */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #0a0909;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+  
+  .navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar .hhh ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .navbar .hhh ul li {
+    display: inline;
+  }
+  
+  .navbar .hhh ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .navbar .nav-button {
+    background-color: #8d0c0c;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .navbar .nav-button:hover {
+    background-color: #8d0c0c;
+  }
+  
+  /* Formulaire */
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  
+  .form-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+    height: 100%;
+  
+  }
+  
+  .form-box h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form-field {
+    margin-bottom: 15px;
+  }
+  
+  .form-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .cta-button {
+    background-color: #8d0c0c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .cta-button:hover {
+    background-color: #8d0c0c;
+  }
+  
+  /* Lien vers la page de login */
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .login-link p {
+    font-size: 16px;
+  }
+  
+  .login-button {
+    background-color: transparent;
+    border: none;
+    color: #8d0c0c;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .login-button:hover {
+    color: #8d0c0c;
+  }
+  
+  /* Image Container */
+  .image-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #0f0d0d;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .footer .pa1, .footer .pa2, .footer .pa3 {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .footer .lien-utils p {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .footer .lien-utils ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footer .lien-utils ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer .lien-utils ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .footer .lien-utils ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  

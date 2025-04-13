@@ -1,0 +1,283 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: #f4f4f4;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .hhh ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .hhh li {
+    margin-right: 20px;
+  }
+  
+  .hhh a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .hhh a:hover {
+    color: red;
+  }
+  
+  .nav-button {
+    background-color: rgb(150, 22, 22);
+    border: 1px solid white;
+    color: rgb(244, 236, 236);
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .nav-button:hover {
+    background-color: #8d0c0c;
+    color: white;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 100vh;
+    background-image: url('./background.png');
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+  
+  /* Contact Section */
+  .contact-info-container {
+    padding: 40px;
+    background-color: #f0f0f0;
+  }
+  
+  .contact-description {
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+  
+  .contact-description h1 {
+    font-size: 36px;
+    color: #0f0f0f;
+    margin-bottom: 16px;
+  }
+  
+  .contact-description p {
+    font-size: 18px;
+    color: #0f0f0f;
+    line-height: 1.6;
+  }
+  
+  /* Contact Details */
+  .contact-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .contact-card {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-card h2 {
+    font-size: 24px;
+    color: #0f0f0f;
+  }
+  
+  .contact-card p {
+    font-size: 18px;
+    color: #0f0f0f;
+  }
+  
+  /* Contact Form */
+  .contact-form-container {
+    padding: 40px;
+    background-color: white;
+  }
+  
+  .contact-form-container h2 {
+    font-size: 32px;
+    color: #0f0f0f;
+    margin-bottom: 24px;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-size: 18px;
+    color: #0f0f0f;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-group textarea {
+    height: 150px;
+  }
+  
+  .submit-button {
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #a40e0e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #8d0c0c;
+  }
+  
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .footer .logo {
+    font-size: 24px;
+    font-style: italic;
+  }
+  
+  .footer .pa1, .footer .pa2, .footer .pa3 {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .footer .lien-utils ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .footer .lien-utils ul li {
+    margin-bottom: 8px;
+  }
+  
+  .footer .lien-utils ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .footer .lien-utils ul li a:hover {
+    color: red;
+  }
+  
+  .footer .social-media {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer .social-media a {
+    color: white;
+    font-size: 20px;
+  }
+  
+  .footer .social-media a:hover {
+    color: red;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .hero {
+      height: 50vh;
+      padding: 0 20px;
+    }
+  
+    .hero h1 {
+      font-size: 36px;
+    }
+  
+    .contact-details {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .contact-card {
+      width: 100%;
+    }
+  
+    .footer {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer .pa1, .footer .pa2, .footer .pa3 {
+      align-items: center;
+      margin-bottom: 20px;
+    }
+  
+    .footer .social-media {
+      justify-content: center;
+      gap: 15px;
+    }
+  }
+  

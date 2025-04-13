@@ -1,0 +1,60 @@
+/* Conteneur principal de la page */
+.thankyou-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  /* Titre de la page */
+  .thankyou-container h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2d3e50;
+    margin-bottom: 20px;
+  }
+  
+  /* Message de remerciement */
+  .thankyou-container p {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 30px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  
+  /* Bouton qui redirige vers la page de connexion */
+  .thankyou-container button {
+    padding: 10px 20px;
+    background-color:#8d0c0c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .thankyou-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Animation simple pour faire apparaître le texte */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .thankyou-container h1, .thankyou-container p, .thankyou-container button {
+    animation: fadeIn 1s ease-out;
+  }
+  
