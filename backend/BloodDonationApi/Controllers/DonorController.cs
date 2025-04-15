@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
 using System.Linq;
+using System.Threading.Tasks;
+using BloodDonationApi.Models;
+using BloodDonationApi.Data;
+using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
-using System.Security.Cryptography;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.AspNetCore.Authorization;
-using BloodDonationApi.Models;
-using BloodDonationApi.Data; // <- Import du DbContext
-using System.Threading.Tasks;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace BloodDonationApi.Controllers
 {
@@ -21,11 +21,13 @@ namespace BloodDonationApi.Controllers
     {
         private readonly IConfiguration _config;
         private readonly AppDbContext _context;
+        private readonly ILogger<DonorController> _logger;
 
-        public DonorController(IConfiguration config, AppDbContext context)
+        public DonorController(IConfiguration config, AppDbContext context, ILogger<DonorController> logger)
         {
             _config = config;
             _context = context;
+            _logger = logger;
         }
 
         // ✅ Inscription — enregistre en BDD
@@ -49,8 +51,14 @@ namespace BloodDonationApi.Controllers
                 return Conflict("This phone number or email is already registered.");
             }
 
+            // Vérification du rôle
+            if (newDonor.Role != "Admin" && newDonor.Role != "Donor")
+            {
+                return BadRequest("Role must be either 'Admin' or 'Donor'.");
+            }
+
             newDonor.Password = HashPassword(newDonor.Password);
-            newDonor.Role = newDonor.Role ?? "Donor";
+            newDonor.Role = newDonor.Role ?? "Donor"; // Si aucun rôle n'est spécifié, on le met par défaut à 'Donor'
 
             _context.Donors.Add(newDonor);
             await _context.SaveChangesAsync();
@@ -68,8 +76,16 @@ namespace BloodDonationApi.Controllers
                 return Unauthorized("Invalid phone or password.");
             }
 
+            // Générer le token JWT
             var token = GenerateJwtToken(donor.Phone, donor.Role);
-            return Ok(new { Token = token, Message = "Login successful.", Role = donor.Role });
+
+            // Ajouter le rôle dans la réponse
+            return Ok(new 
+            { 
+                Token = token, 
+                Message = "Login successful.", 
+                Role = donor.Role // Ajouter ici l'information de rôle
+            });
         }
 
         private string HashPassword(string password)
@@ -121,5 +137,8 @@ namespace BloodDonationApi.Controllers
         }
     }
 }
+
+
+
 
 

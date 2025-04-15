@@ -65,18 +65,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// 🌐 Activation de CORS
+// 🌐 Activation de CORS (utilise la politique nommée "AllowAll")
 app.UseCors("AllowAll");
 
 // 🔐 Activation de l’authentification et autorisation
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 🚨 Gestion des erreurs globales (assure-toi d’avoir un endpoint /error si activé)
+// 🚨 Gestion des erreurs globales (optionnel)
 app.UseExceptionHandler("/error");
 
 // 📦 Routing des contrôleurs
 app.MapControllers();
 
+// ▶️ Démarrage de l'application
 app.Run();
 

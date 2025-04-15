@@ -10,7 +10,8 @@ const SignupPage = () => {
     Email: '',
     Phone: '',
     Password: '',
-    ConfirmePassword: ''
+    ConfirmePassword: '',
+    Role: 'Donor' // Valeur par défaut du rôle
   });
 
   const handleInputChange = (e) => {
@@ -43,7 +44,8 @@ const SignupPage = () => {
           Email: formData.Email,
           Phone: formData.Phone,
           Password: formData.Password,
-          ConfirmePassword: formData.ConfirmePassword
+          ConfirmePassword: formData.ConfirmePassword,
+          Role: formData.Role // Ajout du rôle dans la requête
         })
       });
 
@@ -140,6 +142,20 @@ const SignupPage = () => {
                 onChange={handleInputChange}
                 required
               />
+            </div>
+
+            {/* Sélection du rôle */}
+            <div className="form-field">
+              <label htmlFor="role">Rôle</label>
+              <select
+                name="Role"
+                id="role"
+                value={formData.Role}
+                onChange={handleInputChange}
+              >
+                <option value="Donor">Donneur</option>
+                <option value="Admin">Admin</option>
+              </select>
             </div>
 
             <button type="submit" className="cta-button">S'inscrire</button>

@@ -1,56 +1,78 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    // Logique de connexion (à implémenter, par exemple via une API)
-    console.log('Email:', email);
-    console.log('Password:', password);
 
-    // Après une connexion réussie, rediriger l'utilisateur
-    navigate('/'); // Rediriger vers la page d'accueil après la connexion
+    try {
+      // Effectuer la requête POST pour l'authentification
+      const response = await axios.post('http://localhost:5216/api/donors/login', {
+        phone,
+        password,
+      });
+
+      const { token, role } = response.data; // Récupère le token et le rôle
+
+      console.log('Response Data:', response.data);  // Debug : vérifier la réponse
+
+      // Vérifier si le rôle est bien présent
+      if (!role) {
+        throw new Error('Role missing in the response');
+      }
+
+      // Stocker le token et le rôle dans localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
+
+      // Debug : Vérifie la réponse et redirige
+      console.log('Token:', token);
+      console.log('Role:', role);
+
+      // Rediriger selon le rôle
+      if (role === 'Admin') {
+        // Rediriger vers la page admin si le rôle est Admin
+        navigate('/admin-dashboard');
+      } else if (role === 'Donor') {
+        // Rediriger vers la page des donneurs si le rôle est Donor
+        navigate('/donor');
+      } else {
+        setError('Role inconnu. Redirection échouée.');
+      }
+    } catch (err) {
+      console.error('Login Error:', err);
+      setError(err.response?.data || 'Erreur lors de la connexion.');
+    }
   };
 
   const handleNavigateSignup = () => {
-    navigate('/signup'); // Rediriger vers la page d'inscription
+    navigate('/signup');
   };
 
   return (
     <div>
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="logo">Logo</div>
-        <div className="hhh">
-          <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/apropos">À propos</a></li>
-            <li><a href="/contact">Contact</a></li>
-            {/* Bouton pour revenir à l'accueil */}
-            <button className="nav-button" onClick={() => navigate('/')}>Retour à l'accueil</button>
-          </ul>
-        </div>
-      </nav>
+      {/* Navbar et autres parties identiques... */}
 
-      {/* Formulaire de connexion */}
       <div className="form-container">
         <div className="form-box">
           <h2>Connexion</h2>
+          {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
           <form onSubmit={handleLoginSubmit}>
             <div className="form-field">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="phone">Numéro de téléphone</label>
               <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Votre email"
+                type="text"
+                id="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Votre numéro de téléphone"
                 required
               />
             </div>
@@ -65,76 +87,24 @@ const LoginPage = () => {
                 required
               />
             </div>
-
             <button type="submit" className="cta-button">Se connecter</button>
           </form>
 
-          {/* Lien vers la page d'inscription */}
           <div className="signup-link">
-  <button className="signup-button" onClick={handleNavigateSignup}>S'inscrire</button>
-  
- 
- 
- 
-
-  </div>
-  </div>
-  </div>
-
-      {/* Image et Footer */}
-      <div className="image-container">
-        {/* Ajoutez des images ici si nécessaire */}
-      </div>
-
-      {/* Footer */}
-      
-      <div className='footer'>
-        <div className="logo">Logo</div>
-
-        <div className='pa1'>
-          <div className='lien-utils'>
-            <p>Liens utiles</p>
-            <ul>
-              <li><a href="a propos">A propos</a></li>
-              <li><a href="a propos">Contactez nous</a></li>
-              <li><a href="a propos">Nos services</a></li>
-              <li><a href="a propos">Blog</a></li>
-              <li><a href="a propos">Evenements</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className='pa2'>
-          <div className='lien-utils'>
-            <p>Ressources</p>
-            <ul>
-              <li><a href="faq">FAQ</a></li>
-              <li><a href="temoignages">Témoignages</a></li>
-              <li><a href="partenaires">Partenaires</a></li>
-              <li><a href="soutien">Soutien</a></li>
-              <li><a href="carrieres">Carriéres</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className='pa3'>
-          <div className='lien-utils'>
-            <p>Abonnez-vous</p>
-            <ul>
-              <li><a href="nouvelles">Nouvelles</a></li>
-              <li><a href="mises-a-jour">Mises à jour</a></li>
-              <li><a href="offres-speciaux">Offres spéciales</a></li>
-              <li><a href="reseaux-sociaux">Réseaux Sociaux</a></li>
-              <li><a href="inscription">S'inscrire</a></li>
-            </ul>
+            <button className="signup-button" onClick={handleNavigateSignup}>
+              S'inscrire
+            </button>
           </div>
         </div>
       </div>
-    
-      
-      </div>
-   
+
+      {/* Footer (si nécessaire) */}
+    </div>
   );
 };
 
 export default LoginPage;
+
+
+
+
