@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link} from 'react-router-dom';
 import './DonatePage.css';
+import logo from './logo.jpg'
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -66,13 +67,12 @@ const SignupPage = () => {
     <div>
       {/* Navbar */}
       <nav className="navbar">
-        <div className="logo">Logo</div>
+        <div className="logo"><img src={logo} alt="logo" /></div>
         <div className="hhh">
           <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/apropos">À propos</a></li>
-            <li><a href="/contact">Contact</a></li>
+            
+          <li><Link to="/about">À propos</Link></li>
+            <li><Link to ="/contact">Contact</Link></li>
             <button className="nav-button" onClick={handleNavigateHome}>Retour à l'accueil</button>
           </ul>
         </div>
@@ -166,24 +166,41 @@ const SignupPage = () => {
           </div>
         </div>
       </div>
+      
+      <div className="footer">
+  <div className="footer-section logo-section">
+    <img src={logo} alt="Logo" />
+  </div>
 
-      {/* Footer */}
-      <div className='footer'>
-        <div className="logo">Logo</div>
-        <div className='pa1'>
-          <div className='lien-utils'>
-            <p>Liens utiles</p>
-            <ul>
-              <li><a href="a propos">A propos</a></li>
-              <li><a href="a propos">Contactez nous</a></li>
-              <li><a href="a propos">Nos services</a></li>
-              <li><a href="a propos">Blog</a></li>
-              <li><a href="a propos">Evenements</a></li>
-            </ul>
-          </div>
-        </div>
+  <div className="footer-section">
+    <h4>Liens utiles</h4>
+    <ul>
+        <li><Link to="/about">À propos</Link></li>
+        <li>< Link to="/evenements">Événements</Link></li>
+    </ul>
+  </div>
+
+  <div className="footer-section">
+    <h4>Ressources</h4>
+    <ul>
+      <li><Link to="/faq">FAQ</Link></li>
+      <li><Link to="/temoignages">Témoignages</Link></li>
+    </ul>
+  </div>
+
+  <div className="footer-section">
+    <h4>Abonnez-vous</h4>
+    <ul>
+      <li><Link to="/reseaux-sociaux">Réseaux sociaux</Link></li>
+      <li><Link to="/signup">S'inscrire</Link></li>
+    </ul>
+  </div>
+</div>
+
+      
+        
       </div>
-    </div>
+  
   );
 };
 

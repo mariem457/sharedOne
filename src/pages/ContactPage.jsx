@@ -1,27 +1,24 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Importation de useNavigate
+import { useNavigate, Link } from 'react-router-dom'; // Importation de useNavigate et Link
 import './ContactPage.css';
 import im2 from './image2.jpg';
-
+import logo from './logo.jpg';
 
 const ContactPage = () => {
-  const navigate = useNavigate(); // Création du hook navigate
+  const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/signup'); // Redirection vers la page Signup
+    navigate('/signup');
   };
 
   return (
     <div>
       {/* Navbar */}
       <nav className="navbar">
-        <div className="logo">Logo</div>
+        <div className="logo"><img src={logo} alt="logo" /></div>
         <div className="hhh">
           <ul>
-            <li><a href="Services">Services</a></li>
-            <li><a href="À propos">À propos</a></li>
-            
-            <button className="nav-button" onClick={handleNavigate}>Rejoindre</button>
+            <li><Link to="/about">À propos</Link></li>
             <button className="nav-button" onClick={handleNavigate}>S'inscrire</button>
           </ul>
         </div>
@@ -70,15 +67,15 @@ const ContactPage = () => {
         <h2>Envoyez-nous un message</h2>
         <form className="contact-form">
           <div className="form-group">
-            <label for="name">Nom</label>
+            <label htmlFor="name">Nom</label>
             <input type="text" id="name" placeholder="Votre nom" required />
           </div>
           <div className="form-group">
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input type="email" id="email" placeholder="Votre email" required />
           </div>
           <div className="form-group">
-            <label for="message">Message</label>
+            <label htmlFor="message">Message</label>
             <textarea id="message" placeholder="Votre message" required></textarea>
           </div>
           <button type="submit" className="submit-button">Envoyer</button>
@@ -87,45 +84,32 @@ const ContactPage = () => {
 
       {/* Footer */}
       <div className="footer">
-        <div className="logo">Logo</div>
-
-        <div className='pa1'>
-          <div className='lien-utils'>
-            <p>Liens utiles</p>
-            <ul>
-              <li><a href="a propos">A propos</a></li>
-              <li><a href="contact">Contactez nous</a></li>
-              <li><a href="services">Nos services</a></li>
-              <li><a href="blog">Blog</a></li>
-              <li><a href="evenements">Evenements</a></li>
-            </ul>
-          </div>
+        <div className="footer-section logo-section">
+          <img src={logo} alt="Logo" />
         </div>
 
-        <div className='pa2'>
-          <div className='lien-utils'>
-            <p>Ressources</p>
-            <ul>
-              <li><a href="faq">FAQ</a></li>
-              <li><a href="temoignages">Témoignages</a></li>
-              <li><a href="partenaires">Partenaires</a></li>
-              <li><a href="soutien">Soutien</a></li>
-              <li><a href="carrieres">Carriéres</a></li>
-            </ul>
-          </div>
+        <div className="footer-section">
+          <h4>Liens utiles</h4>
+          <ul>
+            <li><Link to="/about">À propos</Link></li>
+            <li><Link to="/evenements">Événements</Link></li>
+          </ul>
         </div>
 
-        <div className='pa3'>
-          <div className='lien-utils'>
-            <p>Abonnez-vous</p>
-            <ul>
-              <li><a href="nouvelles">Nouvelles</a></li>
-              <li><a href="mises-a-jour">Mises à jour</a></li>
-              <li><a href="offres-speciaux">Offres spéciales</a></li>
-              <li><a href="reseaux-sociaux">Réseaux Sociaux</a></li>
-              <li><a href="inscription">S'inscrire</a></li>
-            </ul>
-          </div>
+        <div className="footer-section">
+          <h4>Ressources</h4>
+          <ul>
+            <li><Link to="/faq">FAQ</Link></li>
+            <li><Link to="/temoignages">Témoignages</Link></li>
+          </ul>
+        </div>
+
+        <div className="footer-section">
+          <h4>Abonnez-vous</h4>
+          <ul>
+            <li><Link to="/reseaux-sociaux">Réseaux sociaux</Link></li>
+            <li><Link to="/signup">S'inscrire</Link></li>
+          </ul>
         </div>
       </div>
     </div>

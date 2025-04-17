@@ -59,6 +59,7 @@ const LoginPage = () => {
   return (
     <div>
       {/* Navbar et autres parties identiques... */}
+      
 
       <div className="form-container">
         <div className="form-box">

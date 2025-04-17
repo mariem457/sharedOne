@@ -6,6 +6,7 @@ import insc from './inscription.jpg';
 import rend from './rendez-vous.jpg';
 import don from './don.jpg';
 import cube from './cube.png';
+import logo from './logo.jpg'
 
 const HomePage = () => {
   const navigate = useNavigate(); // Création du hook navigate
@@ -18,10 +19,10 @@ const HomePage = () => {
     <div>
       {/* Navbar */}
       <nav className="navbar">
-        <div className="logo">Logo</div>
+        <div className="logo"> <img src={logo} alt="logo" /></div>
         <div className='hhh'>
           <ul>
-            <li><a href="Services">Services</a></li>
+           
             <li>
               <a
                 href="#"
@@ -38,12 +39,7 @@ const HomePage = () => {
                 Contact
               </a>
             </li> 
-            <button 
-              className="nav-button" 
-              onClick={() => handleNavigate('/signup')} // Redirection sur le bouton Rejoindre
-            >
-              Rejoindre
-            </button>
+           
             <button 
               className="nav-button" 
               onClick={() => handleNavigate('/signup')} // Redirection sur le bouton S'inscrire
@@ -192,48 +188,36 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className='footer'>
-        <div className="logo">Logo</div>
+      <div className="footer">
+  <div className="footer-section logo-section">
+    <img src={logo} alt="Logo" />
+  </div>
 
-        <div className='pa1'>
-          <div className='lien-utils'>
-            <p>Liens utiles</p>
-            <ul>
-              <li><a href="a propos">A propos</a></li>
-              <li><a href="a propos">Contactez nous</a></li>
-              <li><a href="a propos">Nos services</a></li>
-              <li><a href="a propos">Blog</a></li>
-              <li><a href="a propos">Evenements</a></li>
-            </ul>
-          </div>
-        </div>
+  <div className="footer-section">
+    <h4>Liens utiles</h4>
+    <ul>
+      <li><a href="/a-propos">À propos</a></li>
+      <li><a href="/evenements">Événements</a></li>
+    </ul>
+  </div>
 
-        <div className='pa2'>
-          <div className='lien-utils'>
-            <p>Ressources</p>
-            <ul>
-              <li><a href="faq">FAQ</a></li>
-              <li><a href="temoignages">Témoignages</a></li>
-              <li><a href="partenaires">Partenaires</a></li>
-              <li><a href="soutien">Soutien</a></li>
-              <li><a href="carrieres">Carriéres</a></li>
-            </ul>
-          </div>
-        </div>
+  <div className="footer-section">
+    <h4>Ressources</h4>
+    <ul>
+      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/temoignages">Témoignages</a></li>
+    </ul>
+  </div>
 
-        <div className='pa3'>
-          <div className='lien-utils'>
-            <p>Abonnez-vous</p>
-            <ul>
-              <li><a href="nouvelles">Nouvelles</a></li>
-              <li><a href="mises-a-jour">Mises à jour</a></li>
-              <li><a href="offres-speciaux">Offres spéciales</a></li>
-              <li><a href="reseaux-sociaux">Réseaux Sociaux</a></li>
-              <li><a href="inscription">S'inscrire</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <div className="footer-section">
+    <h4>Abonnez-vous</h4>
+    <ul>
+      <li><a href="/reseaux-sociaux">Réseaux sociaux</a></li>
+      <li><a href="/signup">S'inscrire</a></li>
+    </ul>
+  </div>
+</div>
+
     </div>
   );
 };

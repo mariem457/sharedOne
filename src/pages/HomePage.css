@@ -14,10 +14,11 @@ body {
     padding: 16px 40px;
   }
   
-  .logo {
-    font-size: 24px;
-    font-style: italic;
-    font-weight: bold;
+  .logo img  {
+    width: 50px;
+    border-radius: 30px;
+    
+ 
   }
   
  
@@ -422,45 +423,54 @@ body {
 }
 .footer {
   display: flex;
-  justify-content: space-evenly; /* Espacement égal entre les éléments */
-  align-items: flex-start; /* Aligne les éléments en haut */
-  background-color: #050505;
-  padding: 20px 40px; /* Ajoute du padding pour contrôler l'espace autour des éléments */
-}
-
-.logo {
-  color: white;
-  font-size: 24px; /* Taille du logo */
-  text-align: center; /* Centrer le texte du logo */
-}
-
-.pa1, .pa2, .pa3 {
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
-}
-
-.lien-utils p {
-  margin-bottom: 10px; /* Espacement sous le paragraphe */
-  font-size: 18px;
-}
-
-.lien-utils a {
+  flex-wrap: nowrap; /* Évite que les blocs se mettent à la ligne */
+  background-color: #050505;
+  padding: 20px 40px;
   color: white;
-  text-decoration: none;
-  display: block; /* Assure que chaque lien occupe toute la largeur du <li> */
-  padding: 5px 0; /* Ajoute un peu de padding pour un meilleur aspect visuel */
+  gap: 20px; /* Contrôle l’espace horizontal */
 }
 
-.lien-utils a:hover {
-  color: #FF5733; /* Change la couleur du lien au survol */
+.footer-section {
+  flex: 1;
+  margin: 0; /* Supprime les marges verticales */
 }
 
-.lien-utils ul {
-  list-style-type: none;
-  padding-left: 0;
+.footer-section:not(.logo-section) {
+  margin-top: 0;
 }
 
-.lien-utils li {
-  margin-bottom: 10px; /* Espacement entre les éléments de la liste */
+.logo-section {
+  flex: 0 0 auto; /* Empêche le logo de prendre trop d’espace */
+  align-self: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+.logo-section img {
+  width: 50px;
+  border-radius: 30px;
+  display: block;
+  margin: 0;
+}
+.footer-section ul {
+  list-style: none; /* Enlève les puces */
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section a {
+  color: inherit; /* Inhérite le blanc défini dans le footer */
+  text-decoration: none; /* Enlève le soulignement */
+  transition: color 0.3s ease; /* Animation fluide pour le hover */
+  cursor: pointer;
+}
+
+.footer-section a:hover {
+  color: red; /* Change en rouge au survol */
+}
+
+.footer-section li {
+  margin-bottom: 20px;
 }
