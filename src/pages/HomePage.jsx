@@ -83,7 +83,7 @@ const HomePage = () => {
           <img src={cube} alt="cube" /></div>
           <h2>Un acte de solidarité et de générosité</h2>
           <p>Donner du sang est un geste altruiste qui renforce les liens communautaires.</p>
-          <button className="action-button icon-button">
+          <button className="action-button icon-button"  onClick={() => handleNavigate('/about-donation')}>
             En savoir plus <span className="arrow">&gt;</span>
           </button>
         </div>
@@ -92,7 +92,7 @@ const HomePage = () => {
           <img src={cube} alt="cube" />
           <h2>Une ressource précieuse en cas d'urgence</h2>
           <p>Les hôpitaux dépendent des dons de sang pour traiter les patients en urgence.</p>
-          <button className="action-button icon-button">
+          <button className="action-button icon-button" onClick={() => handleNavigate('/donation-appointment')}>
             Agir maintenant <span className="arrow">&gt;</span>
           </button>
         </div>
@@ -101,7 +101,7 @@ const HomePage = () => {
           <img src={cube} alt="cube" />
           <h2>Un besoin constant de dons de sang</h2>
           <p>Les besoins en sang sont permanents et doivent être satisfaits régulièrement.</p>
-          <button className="action-button icon-button">
+          <button className="action-button icon-button"  onClick={() => handleNavigate('/become-donor')}>
             Participez <span className="arrow">&gt;</span>
           </button>
         </div>
