@@ -6,7 +6,9 @@ import insc from './inscription.jpg';
 import rend from './rendez-vous.jpg';
 import don from './don.jpg';
 import cube from './cube.jpeg';
-import logo from './logo.jpg'
+import logo from './logo.jpg';
+import FAQ from './FAQ';
+import  { useState } from 'react';
 
 const HomePage = () => {
   const navigate = useNavigate(); // Création du hook navigate
@@ -14,6 +16,8 @@ const HomePage = () => {
   const handleNavigate = (path) => {
     navigate(path); 
   };
+  const [showSocialModal, setShowSocialModal] = useState(false);
+
 
   return (
     <div>
@@ -208,7 +212,7 @@ const HomePage = () => {
   <div className="footer-section">
     <h4>Ressources</h4>
     <ul>
-      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/FAQ">FAQ</a></li>
       <li><a href="/temoignages">Témoignages</a></li>
     </ul>
   </div>
@@ -216,12 +220,49 @@ const HomePage = () => {
   <div className="footer-section">
     <h4>Abonnez-vous</h4>
     <ul>
-      <li><a href="#" >Réseaux sociaux</a>
-      </li>
+    <li>
+  <a href="#" onClick={() => setShowSocialModal(true)}>
+    Réseaux sociaux
+  </a>
+</li>
+
       <li><a href="/signup">S'inscrire</a></li>
     </ul>
   </div>
 </div>
+{showSocialModal && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <div className="social-icons">
+        <div className="icon">
+          <i className="fas fa-link"></i>
+          <span>Copier le lien</span>
+        </div>
+        <div className="icon">
+          <i className="fab fa-facebook-f"></i>
+          <span>Facebook</span>
+        </div>
+        <div className="icon">
+          <i className="fab fa-facebook-messenger"></i>
+          <span>Messenger</span>
+        </div>
+        <div className="icon">
+          <i className="fab fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </div>
+        <div className="icon">
+          <i className="fas fa-envelope"></i>
+          <span>Email</span>
+        </div>
+        <div className="icon">
+          <i className="fab fa-threads"></i>
+          <span>Threads</span>
+        </div>
+        <div className="close-btn" onClick={() => setShowSocialModal(false)}>✖</div>
+      </div>
+    </div>
+  </div>
+)}
 
     </div>
   );

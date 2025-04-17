@@ -8,14 +8,14 @@ import AboutPage from './pages/AboutPage';
 import Donor from './pages/Donor';
 import PrivateRoute from './pages/PrivateRoute'; 
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
-
-
+import FAQ from './pages/FAQ';
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/thankyou" element={<ThankYouPage />} />
         <Route path="/contact" element={<ContactPage />} />
