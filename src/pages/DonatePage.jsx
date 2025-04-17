@@ -5,6 +5,8 @@ import logo from './logo.jpg'
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  
+ //nous permet de suivre q'est ce que l'utilisteur tape
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -12,9 +14,9 @@ const SignupPage = () => {
     Phone: '',
     Password: '',
     ConfirmePassword: '',
-    Role: 'Donor' // Valeur par défaut du rôle
+    Role: 'Donor' //valeur par défaut 
   });
-
+// ki nhib nbadil fi les champs hiya ta3mil mise a jour lil les champs
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -27,15 +29,15 @@ const SignupPage = () => {
   const handleNavigateLogin = () => {
     navigate('/login');
   };
-
-  const handleSubmit = async (e) => {
+//
+  const handleSubmit = async (e) => { ////Empêche le rechargement automatique de la page
     e.preventDefault();
 
     if (formData.Password !== formData.ConfirmePassword) {
       alert('Les mots de passe ne correspondent pas.');
       return;
     }
-
+//Envoie les données au backend via une requête POST
     try {
       const response = await fetch('http://localhost:5216/api/donors/register', {
         method: 'POST',
@@ -46,7 +48,7 @@ const SignupPage = () => {
           Phone: formData.Phone,
           Password: formData.Password,
           ConfirmePassword: formData.ConfirmePassword,
-          Role: formData.Role // Ajout du rôle dans la requête
+          Role: formData.Role 
         })
       });
 
@@ -54,7 +56,7 @@ const SignupPage = () => {
 
       if (response.ok) {
         alert('Inscription réussie');
-        navigate('/thankyou'); // Navigate vers la page de remerciement
+        navigate('/thankyou'); 
       } else {
         alert("Erreur lors de l'inscription : " + (data.title || 'Erreur inconnue'));
       }
@@ -65,7 +67,7 @@ const SignupPage = () => {
 
   return (
     <div>
-      {/* Navbar */}
+    
       <nav className="navbar">
         <div className="logo"><img src={logo} alt="logo" /></div>
         <div className="hhh">
@@ -78,7 +80,7 @@ const SignupPage = () => {
         </div>
       </nav>
 
-      {/* Formulaire d'inscription */}
+      
       <div className="form-container">
         <div className="form-box">
           <h2>Formulaire d'inscription</h2>
@@ -144,7 +146,7 @@ const SignupPage = () => {
               />
             </div>
 
-            {/* Sélection du rôle */}
+        
             <div className="form-field">
               <label htmlFor="role">Rôle</label>
               <select

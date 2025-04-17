@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
+    background-color: rgb(159, 155, 155);
    
   }
   
@@ -48,6 +49,7 @@ body {
     display: flex;
     align-items: center;
     padding: 0 80px;
+    
   }
   
   .hero-content {
@@ -86,7 +88,7 @@ body {
  .description-box{
   width: 50%;
   padding: 80px;
-  background-color: white;
+  
   
   color: #1b1a1a;
  } 
@@ -97,7 +99,7 @@ body {
  .card{
   width: 50%;
   padding: 80px;
-  background-color: white;
+
   
   color: #1b1a1a;
 
@@ -109,12 +111,13 @@ body {
   margin: 0 auto;
   font-family: 'Arial', sans-serif;
   color: #333;
+ 
 }
 
 .stats-content {
   width: 60%;
   padding: 40px;
-  background-color: white;
+  
   box-sizing: border-box;
 }
 
@@ -201,47 +204,47 @@ body {
 }
 
 .action-button {
-  background-color: white;
+  
   color: #080808;
   border: 2px solid #120f0f;
 
 }
 .hhh ul {
-  list-style-type: none; /* Supprime les puces de la liste */
-  padding-left: 0; /* Enlève le padding à gauche */
-  margin: 0; /* Enlève la marge par défaut */
-  display: flex; /* Pour afficher les éléments horizontalement */
-  align-items: center; /* Aligne les éléments verticalement */
+  list-style-type: none; 
+  padding-left: 0; 
+  margin: 0; 
+  display: flex; 
+  align-items: center; 
 }
 
 .hhh li {
-  margin-right: 20px; /* Espacement entre les éléments de la liste */
+  margin-right: 20px; 
 }
 
 .hhh a {
-  color: white; /* Couleur du lien par défaut */
-  text-decoration: none; /* Enlève le soulignement du lien */
-  font-size: 16px; /* Taille du texte du lien */
+  color: white; 
+  text-decoration: none; 
+  font-size: 16px; 
 }
 
 .hhh a:hover {
-  color: red; /* Change la couleur du lien en rouge au survol */
+  color: red; 
 }
 
 .nav-button {
-  background-color: rgb(150, 22, 22); /* Pas de fond pour les boutons */
-  border: 1px solid white; /* Bordure blanche */
-  color: rgb(244, 236, 236); /* Couleur du texte du bouton */
-  padding: 10px 20px; /* Padding autour du texte du bouton */
-  margin-left: 10px; /* Espacement entre les boutons */
-  cursor: pointer; /* Change le curseur lorsque l'on passe sur le bouton */
+  background-color: rgb(150, 22, 22); 
+  border: 1px solid white; 
+  color: rgb(244, 236, 236); 
+  padding: 10px 20px; 
+  margin-left: 10px; 
+  cursor: pointer; 
 }
 
 
 
 
 .action-button.secondary {
-  background-color: white;
+ 
   color: #080808;
   border: 2px solid #120f0f;
 }
@@ -307,6 +310,7 @@ body {
   margin: 0 auto;
   padding: 40px 20px;
   font-family: Arial, sans-serif;
+  
 }
 
 .title {
@@ -322,7 +326,13 @@ body {
   margin-bottom: 40px;
   max-width: 900px;
   margin-left: auto;
+ 
 }
+.cube-img {
+  width: 20px;
+  height: auto;
+}
+
 
 .steps {
   display: flex;
@@ -474,3 +484,14 @@ body {
 .footer-section li {
   margin-bottom: 20px;
 }
+.cube-img {
+  width: 80px;
+  height: auto;
+  border: 2px solid red;
+}
+.card3 img{
+  width: 120px;
+  border-radius: 30px;
+  position: center;
+}
+

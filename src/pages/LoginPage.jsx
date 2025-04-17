@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'; //axios : pour envoyer des requêtes HTTP (ici pour la connexion)
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -55,10 +55,13 @@ const LoginPage = () => {
   const handleNavigateSignup = () => {
     navigate('/signup');
   };
+  const handleNavigateForgotPassword = () => {
+    navigate('/forgot');
+  };
 
   return (
     <div>
-      {/* Navbar et autres parties identiques... */}
+
       
 
       <div className="form-container">
@@ -90,12 +93,15 @@ const LoginPage = () => {
             </div>
             <button type="submit" className="cta-button">Se connecter</button>
           </form>
+          <div className="auth-buttons">
+                    <button className="auth-button" onClick={handleNavigateSignup}>
+                      S'inscrire
+                    </button>
+                    <button className="auth-button" onClick={handleNavigateForgotPassword}>
+                      Mot de passe oublié ?
+                    </button>
+                  </div>
 
-          <div className="signup-link">
-            <button className="signup-button" onClick={handleNavigateSignup}>
-              S'inscrire
-            </button>
-          </div>
         </div>
       </div>
 

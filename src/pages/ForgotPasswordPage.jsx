@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "./image.png"; // Assure-toi que le chemin est correct
+
 import './ForgotPasswordPage.css';
 
 const ForgotPasswordPage = () => {
@@ -42,34 +42,34 @@ const ForgotPasswordPage = () => {
   };
 
   return (
-    <div className="forgot-password-container">
-      <div className="header">
-        <button onClick={() => navigate("/")} className="back-button">←</button>
-        <img src={logo} alt="Blood Bank Logo" className="logo" />
-        <div className="spacer"></div>
+    <div className="reset-page">
+      <div className="reset-header">
+        <button onClick={() => navigate("/")} className="reset-back-btn">←</button>
+        
+        <div className="reset-spacer"></div>
       </div>
 
-      <div className="form-container">
-        <h2 className="form-title">Forgot Password</h2>
+      <div className="reset-form-box">
+        <h2 className="reset-title">Forgot Password</h2>
 
-        {message && <div className="success-message">{message}</div>}
-        {error && <div className="error-message">{error}</div>}
+        {message && <div className="reset-success">{message}</div>}
+        {error && <div className="reset-error">{error}</div>}
 
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="phone" className="input-label">Phone number</label>
+          <div className="reset-field-group">
+            <label htmlFor="phone" className="reset-label">Phone number</label>
             <input
               type="text"
               id="phone"
-              className="input-field"
+              className="reset-input"
               placeholder="Enter your phone number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
 
-          <button type="submit" className="submit-button">Send Reset Code</button>
-          <p onClick={() => navigate("/")} className="back-link">← Back to home</p>
+          <button type="submit" className="reset-submit-btn">Send Reset Code</button>
+          <p onClick={() => navigate("/")} className="reset-back-link">← Back to home</p>
         </form>
       </div>
     </div>
@@ -77,5 +77,6 @@ const ForgotPasswordPage = () => {
 };
 
 export default ForgotPasswordPage;
+
 
 

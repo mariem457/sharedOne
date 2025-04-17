@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Importation de useNavigate et Link
+import { useNavigate, Link } from 'react-router-dom'; 
 import './ContactPage.css';
 import im2 from './image2.jpg';
 import logo from './logo.jpg';
@@ -13,7 +13,7 @@ const ContactPage = () => {
 
   return (
     <div>
-      {/* Navbar */}
+      
       <nav className="navbar">
         <div className="logo"><img src={logo} alt="logo" /></div>
         <div className="hhh">
@@ -24,7 +24,7 @@ const ContactPage = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+     
       <div className="hero">
         <div className="hero-content">
           <h1>Nous contacter</h1>
@@ -34,7 +34,7 @@ const ContactPage = () => {
         </div>
       </div>
 
-      {/* Contact Information */}
+ 
       <div className="contact-info-container">
         <div className="contact-description">
           <h1>Contactez-nous pour toute information supplémentaire</h1>
@@ -62,7 +62,7 @@ const ContactPage = () => {
         </div>
       </div>
 
-      {/* Contact Form */}
+     
       <div className="contact-form-container">
         <h2>Envoyez-nous un message</h2>
         <form className="contact-form">
@@ -82,7 +82,7 @@ const ContactPage = () => {
         </form>
       </div>
 
-      {/* Footer */}
+     
       <div className="footer">
         <div className="footer-section logo-section">
           <img src={logo} alt="Logo" />

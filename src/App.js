@@ -6,7 +6,9 @@ import ThankYouPage from './pages/ThankYouPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import Donor from './pages/Donor';
-import PrivateRoute from './pages/PrivateRoute'; // 👈 Import
+import PrivateRoute from './pages/PrivateRoute'; 
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         
-        {/* 🔐 Route protégée */}
+         <Route path="/forgot" element={<ForgotPasswordPage/>}/>
+         
         <Route
           path="/donor"
           element={

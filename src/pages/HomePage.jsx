@@ -5,19 +5,19 @@ import im2 from './image2.jpg';
 import insc from './inscription.jpg';
 import rend from './rendez-vous.jpg';
 import don from './don.jpg';
-import cube from './cube.png';
+import cube from './cube.jpeg';
 import logo from './logo.jpg'
 
 const HomePage = () => {
   const navigate = useNavigate(); // Création du hook navigate
 
   const handleNavigate = (path) => {
-    navigate(path); // Redirection vers la page spécifiée
+    navigate(path); 
   };
 
   return (
     <div>
-      {/* Navbar */}
+   
       <nav className="navbar">
         <div className="logo"> <img src={logo} alt="logo" /></div>
         <div className='hhh'>
@@ -26,7 +26,7 @@ const HomePage = () => {
             <li>
               <a
                 href="#"
-                onClick={() => handleNavigate('/about')} // Redirection sur le lien À propos
+                onClick={() => handleNavigate('/about')} 
               >
                 À propos
               </a>
@@ -34,7 +34,7 @@ const HomePage = () => {
             <li>
               <a
                 href="#"
-                onClick={() => handleNavigate('/contact')} // Redirection sur le lien Contact
+                onClick={() => handleNavigate('/contact')} 
               >
                 Contact
               </a>
@@ -42,7 +42,7 @@ const HomePage = () => {
            
             <button 
               className="nav-button" 
-              onClick={() => handleNavigate('/signup')} // Redirection sur le bouton S'inscrire
+              onClick={() => handleNavigate('/signup')} 
             >
               S'inscrire
             </button>
@@ -50,7 +50,7 @@ const HomePage = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+    
       <div className="hero">
         <div className="hero-content">
           <h1>
@@ -79,7 +79,8 @@ const HomePage = () => {
 
       <div className='card3'>
         <div className="card">
-          <img src={cube} alt="cube" />
+          <div className='immm'>
+          <img src={cube} alt="cube" /></div>
           <h2>Un acte de solidarité et de générosité</h2>
           <p>Donner du sang est un geste altruiste qui renforce les liens communautaires.</p>
           <button className="action-button icon-button">
@@ -197,7 +198,10 @@ const HomePage = () => {
     <h4>Liens utiles</h4>
     <ul>
       <li><a href="/a-propos">À propos</a></li>
-      <li><a href="/evenements">Événements</a></li>
+      <li><a
+                href="#"
+                onClick={() => handleNavigate('/ReseauxSociaux')} 
+              > reseaux sociaux </a></li>
     </ul>
   </div>
 
@@ -212,7 +216,8 @@ const HomePage = () => {
   <div className="footer-section">
     <h4>Abonnez-vous</h4>
     <ul>
-      <li><a href="/reseaux-sociaux">Réseaux sociaux</a></li>
+      <li><a href="#" >Réseaux sociaux</a>
+      </li>
       <li><a href="/signup">S'inscrire</a></li>
     </ul>
   </div>
