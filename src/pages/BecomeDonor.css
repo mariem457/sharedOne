@@ -1,0 +1,143 @@
+.donor-registration {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .donor-registration h1 {
+    color: #c62828;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
+  
+  .progress-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 20px;
+  }
+  
+  .progress-step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .progress-step.active {
+    background: #c62828;
+    color: white;
+  }
+  
+  .form-step {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-step h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .checkbox-group input {
+    width: auto;
+  }
+  
+  .summary {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .summary h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .prev-btn,
+  .next-btn,
+  .submit-btn {
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .prev-btn {
+    background: #f0f0f0;
+    border: none;
+    color: #666;
+  }
+  
+  .prev-btn:hover {
+    background: #e0e0e0;
+  }
+  
+  .next-btn,
+  .submit-btn {
+    background: #c62828;
+    border: none;
+    color: white;
+  }
+  
+  .next-btn:hover,
+  .submit-btn:hover {
+    background: #a51c1c;
+  }

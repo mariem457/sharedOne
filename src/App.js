@@ -6,9 +6,21 @@ import ThankYouPage from './pages/ThankYouPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import Donor from './pages/Donor';
+<<<<<<< HEAD
 import PrivateRoute from './pages/PrivateRoute'; 
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+<<<<<<< HEAD
 import FAQ from './pages/FAQ';
+=======
+
+=======
+import DonationAppointment from './pages/DonationAppointment';
+import AboutDonation from './pages/AboutDonation';
+import BecomeDonor from './pages/BecomeDonor';
+import PrivateRoute from './pages/PrivateRoute'; // 👈 Import
+>>>>>>> c1bd5f40 (Ajouter les fonctionnalite de buttons)
+
+>>>>>>> f479437d4d8a3073af487aaca782a5e5c0d8ecba
 function App() {
   return (
     <Router>
@@ -20,9 +32,16 @@ function App() {
         <Route path="/thankyou" element={<ThankYouPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
+<<<<<<< HEAD
         
          <Route path="/forgot" element={<ForgotPasswordPage/>}/>
          
+=======
+        <Route path="/donation-appointment" element={<DonationAppointment />} />
+        <Route path="/become-donor" element={<BecomeDonor />} />
+        <Route path="/about-donation" element={<AboutDonation />} />
+        {/* 🔐 Route protégée */}
+>>>>>>> c1bd5f40 (Ajouter les fonctionnalite de buttons)
         <Route
           path="/donor"
           element={
