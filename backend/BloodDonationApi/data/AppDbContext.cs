@@ -19,10 +19,10 @@ namespace BloodDonationApi.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id)
-                      .ValueGeneratedOnAdd(); // important pour que EF comprenne que c’est auto-incrémenté
+                      .ValueGeneratedOnAdd(); 
             });
 
-            // Tu peux ajouter d’autres configurations ici si besoin
+            
         }
     }
 }

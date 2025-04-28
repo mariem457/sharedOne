@@ -1,4 +1,4 @@
-/* Conteneur principal de la page */
+
 .thankyou-container {
     display: flex;
     justify-content: center;
@@ -9,7 +9,7 @@
     flex-direction: column;
   }
   
-  /* Titre de la page */
+ 
   .thankyou-container h1 {
     font-size: 2.5rem;
     font-weight: 600;
@@ -17,7 +17,7 @@
     margin-bottom: 20px;
   }
   
-  /* Message de remerciement */
+ 
   .thankyou-container p {
     font-size: 1.2rem;
     color: #6c757d;
@@ -26,7 +26,7 @@
     line-height: 1.6;
   }
   
-  /* Bouton qui redirige vers la page de connexion */
+  
   .thankyou-container button {
     padding: 10px 20px;
     background-color:#8d0c0c;
@@ -42,7 +42,7 @@
     background-color: #0056b3;
   }
   
-  /* Animation simple pour faire apparaître le texte */
+ 
   @keyframes fadeIn {
     0% {
       opacity: 0;

@@ -1,12 +1,11 @@
-/* Général */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
   }
-  
-  /* Navbar */
+
   .navbar {
     background-color: #0a0909;
     padding: 10px 20px;
@@ -53,7 +52,7 @@ body {
     background-color: #8d0c0c;
   }
   
-  /* Formulaire */
+  
   .form-container {
     display: flex;
     justify-content: center;
@@ -112,7 +111,7 @@ body {
     background-color: #8d0c0c;
   }
   
-  /* Lien vers la page de login */
+  
   .login-link {
     text-align: center;
     margin-top: 20px;
@@ -145,6 +144,9 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+  }
+  .form-field{
+    color: #0a0909;
   }
   
   

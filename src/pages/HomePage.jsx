@@ -1,17 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Importation de useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import './HomePage.css';
 import im2 from './image2.jpg';
 import insc from './inscription.jpg';
 import rend from './rendez-vous.jpg';
 import don from './don.jpg';
-import cube from './cube.jpeg';
+import cube from './cube.png';
 import logo from './logo.jpg';
 import FAQ from './FAQ';
 import  { useState } from 'react';
 
 const HomePage = () => {
-  const navigate = useNavigate(); // Création du hook navigate
+  const navigate = useNavigate(); 
 
   const handleNavigate = (path) => {
     navigate(path); 
@@ -158,7 +158,7 @@ const HomePage = () => {
         </div>
 
         <div className="steps">
-          {/* Étape 1 */}
+          
           <div className="step">
             <div className="step-card">
               <img src={insc} alt="Inscription" className="step-img" />
@@ -167,7 +167,7 @@ const HomePage = () => {
             <p className="step-desc">Inscrivez-vous en quelques clics pour commencer.</p>
           </div>
 
-          {/* Étape 2 */}
+         
           <div className="step">
             <div className="step-card">
               <img src={rend} alt="Rendez-vous" className="step-img" />
@@ -176,7 +176,7 @@ const HomePage = () => {
             <p className="step-desc">Choisissez un créneau horaire qui vous convient.</p>
           </div>
 
-          {/* Étape 3 */}
+          
           <div className="step">
             <div className="step-card">
               <img src={don} alt="Faire un don" className="step-img" />

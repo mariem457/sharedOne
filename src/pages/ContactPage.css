@@ -1,4 +1,4 @@
-/* Global styles */
+
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -6,7 +6,7 @@ body {
     background-color: #f4f4f4;
   }
   
-  /* Navbar */
+  
   .navbar {
     background-color: black;
     display: flex;
@@ -58,7 +58,7 @@ body {
     color: white;
   }
   
-  /* Hero Section */
+ 
   .hero {
     position: relative;
     height: 100vh;
@@ -84,7 +84,7 @@ body {
     margin-bottom: 32px;
   }
   
-  /* Contact Section */
+ 
   .contact-info-container {
     padding: 40px;
     background-color: #f0f0f0;
@@ -107,7 +107,7 @@ body {
     line-height: 1.6;
   }
   
-  /* Contact Details */
+ 
   .contact-details {
     display: flex;
     justify-content: space-between;
@@ -132,7 +132,7 @@ body {
     color: #0f0f0f;
   }
   
-  /* Contact Form */
+  
   .contact-form-container {
     padding: 40px;
     background-color: white;
@@ -186,7 +186,7 @@ body {
     background-color: #8d0c0c;
   }
   
-  /* Footer */
+ 
   .footer {
     display: flex;
     justify-content: space-between;
@@ -245,7 +245,7 @@ body {
     color: red;
   }
   
-  /* Responsiveness */
+ 
   @media (max-width: 768px) {
     .hero {
       height: 50vh;

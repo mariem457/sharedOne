@@ -1,6 +1,5 @@
 import React from 'react';
-import './AboutPage.css'; // Ajoute ta feuille de style personnalisée
-
+import './AboutPage.css'; 
 const AboutPage = () => {
   return (
     <div className="about-page">

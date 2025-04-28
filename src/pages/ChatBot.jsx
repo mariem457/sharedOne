@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './ChatBot.css';
 
 function Chatbot() {
@@ -8,37 +7,34 @@ function Chatbot() {
     { role: 'assistant', content: 'Bonjour ! Comment puis-je vous aider ?' }
   ]);
 
-  const sendMessage = async () => {
+  const faq = {
+    "comment m'inscrire pour donner du sang ?": "Vous pouvez vous inscrire via notre formulaire en ligne ou contacter le centre de don le plus proche.",
+    "comment m'inscrire": "Vous pouvez vous inscrire via notre formulaire en ligne ou contacter le centre de don le plus proche.",
+    "comment s'inscrire": "Vous pouvez vous inscrire via notre formulaire en ligne ou contacter le centre de don le plus proche.",
+    "s'inscrire": "Vous pouvez vous inscrire via notre formulaire en ligne ou contacter le centre de don le plus proche.",
+    "inscription": "Vous pouvez vous inscrire via notre formulaire en ligne ou contacter le centre de don le plus proche.",
+    "aide moi a s'inscrire": "Vous pouvez vous inscrire via notre formulaire en ligne ou contacter le centre de don le plus proche.",
+    "comment inscription": "Vous pouvez vous inscrire via notre formulaire en ligne ou contacter le centre de don le plus proche.",
+    "a quelle fréquence puis-je donner du sang ?": "En général, toutes les 8 semaines pour les hommes et 12 semaines pour les femmes.",
+    "apres quelle durée puis je donner du sang": "En général, toutes les 8 semaines pour les hommes et 12 semaines pour les femmes.",
+    "durée necessaire pour redonner du sang": "En général, toutes les 8 semaines pour les hommes et 12 semaines pour les femmes.",
+    "durée entre dons et dons": "En général, toutes les 8 semaines pour les hommes et 12 semaines pour les femmes.",
+    "le don de sang est-il sûr": "Oui, tout le matériel utilisé est stérile et à usage unique.",
+    "que faire apres un don": "Buvez beaucoup d’eau, reposez-vous, et évitez les activités physiques intenses pour le reste de la journée."
+  };
+
+  const sendMessage = () => {
     if (!input.trim()) return;
 
-    const newMessages = [...messages, { role: 'user', content: input }];
-    setMessages(newMessages);
+    const normalizedInput = input.trim().toLowerCase();
+    const userMessage = { role: 'user', content: input };
+    const responseMessage = {
+      role: 'assistant',
+      content: faq[normalizedInput] || "Désolé, je n'ai pas compris votre question."
+    };
+
+    setMessages(prevMessages => [...prevMessages, userMessage, responseMessage]);
     setInput('');
-
-    try {
-      const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          model: 'gpt-3.5-turbo',
-          messages: [
-            { role: 'system', content: 'Tu es un assistant pour un site de don de sang. Réponds précisément aux questions liées aux dons, inscriptions, conditions, etc.' },
-            ...newMessages
-          ],
-        },
-        {
-          headers: {
-            'Authorization': `Bearer sk-...JoQA`, // remplace avec ta clé
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      const reply = response.data.choices[0].message.content;
-      setMessages([...newMessages, { role: 'assistant', content: reply }]);
-    } catch (error) {
-      console.error('Erreur OpenAI :', error.response ? error.response.data : error.message);
-      setMessages([...newMessages, { role: 'assistant', content: "Désolé, une erreur s'est produite." }]);
-    }
   };
 
   const handleKeyPress = (e) => {
@@ -69,3 +65,4 @@ function Chatbot() {
 }
 
 export default Chatbot;
+

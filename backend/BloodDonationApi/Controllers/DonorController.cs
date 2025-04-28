@@ -12,6 +12,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BloodDonationApi.Controllers
 {
@@ -29,44 +30,54 @@ namespace BloodDonationApi.Controllers
             _context = context;
             _logger = logger;
         }
+[HttpPost("register")]
+public async Task<IActionResult> Register([FromBody] Donor newDonor)
+{
+    if (newDonor == null || string.IsNullOrEmpty(newDonor.Name) ||
+        string.IsNullOrEmpty(newDonor.Email) || string.IsNullOrEmpty(newDonor.Phone) ||
+        string.IsNullOrEmpty(newDonor.Password) || string.IsNullOrEmpty(newDonor.ConfirmePassword))
+    {
+        return BadRequest("Tous les champs sont requis.");
+    }
 
-        // ✅ Inscription — enregistre en BDD
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] Donor newDonor)
-        {
-            if (newDonor == null || string.IsNullOrEmpty(newDonor.Name) ||
-                string.IsNullOrEmpty(newDonor.Email) || string.IsNullOrEmpty(newDonor.Phone) ||
-                string.IsNullOrEmpty(newDonor.Password))
-            {
-                return BadRequest("Name, Email, Phone and Password are required.");
-            }
+    if (!Regex.IsMatch(newDonor.Phone, "^\\d+$"))
+    {
+        return BadRequest("Le numéro de téléphone ne doit contenir que des chiffres.");
+    }
 
-            if (newDonor.Password != newDonor.ConfirmePassword)
-            {
-                return BadRequest("Password and Confirm Password must match.");
-            }
+    if (!Regex.IsMatch(newDonor.Password, "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};':\"\\\\|,.<>/?]).{8,}$"))
+    {
+        return BadRequest("Le mot de passe doit contenir au moins 8 caractères, une lettre, un chiffre et un symbole.");
+    }
 
-            if (_context.Donors.Any(d => d.Phone == newDonor.Phone || d.Email == newDonor.Email))
-            {
-                return Conflict("This phone number or email is already registered.");
-            }
+    if (newDonor.Password != newDonor.ConfirmePassword)
+    {
+        return BadRequest("Les mots de passe ne correspondent pas.");
+    }
 
-            // Vérification du rôle
-            if (newDonor.Role != "Admin" && newDonor.Role != "Donor")
-            {
-                return BadRequest("Role must be either 'Admin' or 'Donor'.");
-            }
+    if (_context.Donors.Any(d => d.Phone == newDonor.Phone || d.Email == newDonor.Email))
+    {
+        return Conflict("Ce numéro de téléphone ou email est déjà utilisé.");
+    }
 
-            newDonor.Password = HashPassword(newDonor.Password);
-            newDonor.Role = newDonor.Role ?? "Donor"; // Si aucun rôle n'est spécifié, on le met par défaut à 'Donor'
+    if (newDonor.Role != "Admin" && newDonor.Role != "Donor" && newDonor.Role != "Center")
+    {
+        return BadRequest("Le rôle doit être 'Admin', 'Donor' ou 'Center'.");
+    }
 
-            _context.Donors.Add(newDonor);
-            await _context.SaveChangesAsync();
+    if (newDonor.BirthDate > DateTime.UtcNow.AddYears(-18))
+    {
+        return BadRequest("Vous devez avoir au moins 18 ans.");
+    }
 
-            return Ok(new { Message = "Donor registered successfully." });
-        }
+    newDonor.Password = HashPassword(newDonor.Password);
+    _context.Donors.Add(newDonor);
+    await _context.SaveChangesAsync();
 
-        // ✅ Connexion
+    return Ok(new { Message = "Donor registered successfully." });
+}
+
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest loginRequest)
         {
@@ -76,15 +87,15 @@ namespace BloodDonationApi.Controllers
                 return Unauthorized("Invalid phone or password.");
             }
 
-            // Générer le token JWT
+           
             var token = GenerateJwtToken(donor.Phone, donor.Role);
 
-            // Ajouter le rôle dans la réponse
+            
             return Ok(new 
             { 
                 Token = token, 
                 Message = "Login successful.", 
-                Role = donor.Role // Ajouter ici l'information de rôle
+                Role = donor.Role 
             });
         }
 

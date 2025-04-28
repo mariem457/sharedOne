@@ -1,0 +1,45 @@
+.app-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+    margin-left: 280px; /* Ajouter un margin-left pour laisser de l'espace à la navbar */
+    background: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  .dashboard {
+    display: flex;
+    flex-direction: row; /* Affiche la navbar à gauche et le contenu à droite */
+    min-height: 100vh;
+  }
+  
+  .navbar {
+    position: fixed; /* Garde la navbar à gauche même lorsqu'on défile la page */
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 280px; /* Largeur de la navbar */
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 10px;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .navbar a:hover {
+    background-color: #444;
+  }
+  

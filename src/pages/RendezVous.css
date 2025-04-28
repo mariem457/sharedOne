@@ -1,0 +1,22 @@
+.darkcouche{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* ⬅️ contrôle la noirceur ici */
+    z-index: 1;
+}
+.rv_arriere {
+    position: relative;
+    top:90px;
+}
+.arriere-plan{
+    position:absolute;
+    background-color: rgb(252, 251, 250);
+    height: 500px;
+    width: 800px;
+    left: 280px;
+    border-radius: 20px;
+    box-shadow:0px 4px 10px rgba(0, 0, 0, 0.25);
+}

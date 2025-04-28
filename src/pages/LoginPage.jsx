@@ -1,50 +1,42 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; //axios : pour envoyer des requêtes HTTP (ici pour la connexion)
 import './LoginPage.css';
-
+import DonorDashboard from './DonorDashboard';
 const LoginPage = () => {
-  const navigate = useNavigate();
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [role, setRole] = useState('');
+  const navigate = useNavigate();
 
-  const handleLoginSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log('Role selected:', role); // Vérifie ici la valeur du rôle
+
+    
     try {
-      // Effectuer la requête POST pour l'authentification
-      const response = await axios.post('http://localhost:5216/api/donors/login', {
-        phone,
-        password,
-      });
+      // Simuler la logique d'authentification avec téléphone et mot de passe
+      if (!phone || !password) {
+        setError('Numéro de téléphone et mot de passe requis');
 
-      const { token, role } = response.data; // Récupère le token et le rôle
-
-      console.log('Response Data:', response.data);  // Debug : vérifier la réponse
-
-      // Vérifier si le rôle est bien présent
-      if (!role) {
-        throw new Error('Role missing in the response');
+        console.log('Navigation vers la page de test...');
+  navigate('/home');
+        return;
       }
 
-      // Stocker le token et le rôle dans localStorage
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
+      // Sauvegarder le rôle dans localStorage
+      localStorage.setItem('userRole', role);
 
-      // Debug : Vérifie la réponse et redirige
-      console.log('Token:', token);
-      console.log('Role:', role);
-
-      // Rediriger selon le rôle
+      // Redirection en fonction du rôle
       if (role === 'Admin') {
-        // Rediriger vers la page admin si le rôle est Admin
         navigate('/admin-dashboard');
       } else if (role === 'Donor') {
-        // Rediriger vers la page des donneurs si le rôle est Donor
-        navigate('/donor');
+        navigate('/donor-dashboard'); // Redirection vers DonorDashboard
+      } else if (role === 'Center') {
+        navigate('/center-dashboard');
       } else {
-        setError('Role inconnu. Redirection échouée.');
+        alert("Rôle inconnu. Redirection échouée.");
       }
     } catch (err) {
       console.error('Login Error:', err);
@@ -55,63 +47,66 @@ const LoginPage = () => {
   const handleNavigateSignup = () => {
     navigate('/signup');
   };
+
   const handleNavigateForgotPassword = () => {
     navigate('/forgot');
   };
 
   return (
-    <div>
-
-      
-
-      <div className="form-container">
-        <div className="form-box">
-          <h2>Connexion</h2>
-          {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
-          <form onSubmit={handleLoginSubmit}>
-            <div className="form-field">
-              <label htmlFor="phone">Numéro de téléphone</label>
-              <input
-                type="text"
-                id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="Votre numéro de téléphone"
-                required
-              />
-            </div>
-            <div className="form-field">
-              <label htmlFor="password">Mot de passe</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Votre mot de passe"
-                required
-              />
-            </div>
-            <button type="submit" className="cta-button">Se connecter</button>
-          </form>
-          <div className="auth-buttons">
-                    <button className="auth-button" onClick={handleNavigateSignup}>
-                      S'inscrire
-                    </button>
-                    <button className="auth-button" onClick={handleNavigateForgotPassword}>
-                      Mot de passe oublié ?
-                    </button>
-                  </div>
-
+    <div className="form-container">
+      <div className="form-box">
+        <h2>Connexion</h2>
+        {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-field">
+            <label htmlFor="phone">Numéro de téléphone</label>
+            <input
+              type="text"
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Votre numéro de téléphone"
+              required
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Votre mot de passe"
+              required
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="role">Choisissez votre rôle :</label>
+            <select
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+            >
+              <option value="">Sélectionner un rôle</option>
+              <option value="Admin">Admin</option>
+              <option value="Donor">Donneur</option>
+              <option value="Center">Centre de Don</option>
+            </select>
+          </div>
+          <button type="submit" className="login-cta-button">Se connecter</button>
+        </form>
+        <div className="auth-buttons">
+          <button className="auth-button" onClick={handleNavigateSignup}>
+            S'inscrire
+          </button>
+          <button className="auth-button" onClick={handleNavigateForgotPassword}>
+            Mot de passe oublié ?
+          </button>
         </div>
       </div>
-
-      {/* Footer (si nécessaire) */}
     </div>
   );
 };
 
 export default LoginPage;
-
-
-
-

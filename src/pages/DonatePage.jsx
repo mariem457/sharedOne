@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate , Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './DonatePage.css';
-import logo from './logo.jpg'
+import logo from './logo.jpg';
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  
- //nous permet de suivre q'est ce que l'utilisteur tape
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -14,49 +12,78 @@ const SignupPage = () => {
     Phone: '',
     Password: '',
     ConfirmePassword: '',
-    Role: 'Donor' //valeur par défaut 
+    Role: 'Donor',
+    BirthDate: ''
   });
-// ki nhib nbadil fi les champs hiya ta3mil mise a jour lil les champs
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleNavigateHome = () => {
-    navigate('/');
-  };
+  const handleNavigateHome = () => navigate('/');
+  const handleNavigateLogin = () => navigate('/login');
 
-  const handleNavigateLogin = () => {
-    navigate('/login');
-  };
-//
-  const handleSubmit = async (e) => { ////Empêche le rechargement automatique de la page
-    e.preventDefault();
+  const validateForm = () => {
+    const phoneRegex = /^\d+$/;
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+
+    if (!phoneRegex.test(formData.Phone)) {
+      alert("Le numéro de téléphone ne doit contenir que des chiffres.");
+      return false;
+    }
+
+    if (!passwordRegex.test(formData.Password)) {
+      alert("Le mot de passe doit contenir au moins 8 caractères, une lettre, un chiffre et un symbole.");
+      return false;
+    }
 
     if (formData.Password !== formData.ConfirmePassword) {
       alert('Les mots de passe ne correspondent pas.');
-      return;
+      return false;
     }
-//Envoie les données au backend via une requête POST
+
+    const birthDate = new Date(formData.BirthDate);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
+
+    if (
+      age < 18 ||
+      (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))
+    ) {
+      alert("Vous devez avoir au moins 18 ans pour vous inscrire.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
     try {
       const response = await fetch('http://localhost:5216/api/donors/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          Name: formData.Name,
-          Email: formData.Email,
-          Phone: formData.Phone,
-          Password: formData.Password,
-          ConfirmePassword: formData.ConfirmePassword,
-          Role: formData.Role 
-        })
+        body: JSON.stringify(formData)
       });
 
-      const data = await response.json();
+      const text = await response.text();
+      const data = (() => {
+        try {
+          return JSON.parse(text);
+        } catch {
+          return { title: text };
+        }
+      })();
 
       if (response.ok) {
         alert('Inscription réussie');
-        navigate('/thankyou'); 
+        navigate('/thankyou');
       } else {
         alert("Erreur lors de l'inscription : " + (data.title || 'Erreur inconnue'));
       }
@@ -67,99 +94,53 @@ const SignupPage = () => {
 
   return (
     <div>
-    
       <nav className="navbar">
         <div className="logo"><img src={logo} alt="logo" /></div>
         <div className="hhh">
           <ul>
-            
-          <li><Link to="/about">À propos</Link></li>
-            <li><Link to ="/contact">Contact</Link></li>
+            <li><Link to="/about">À propos</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
             <button className="nav-button" onClick={handleNavigateHome}>Retour à l'accueil</button>
           </ul>
         </div>
       </nav>
 
-      
       <div className="form-container">
         <div className="form-box">
           <h2>Formulaire d'inscription</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-field">
               <label htmlFor="name">Nom complet</label>
-              <input
-                type="text"
-                id="name"
-                name="Name"
-                placeholder="Votre nom"
-                value={formData.Name}
-                onChange={handleInputChange}
-                required
-              />
+              <input type="text" id="name" name="Name" value={formData.Name} onChange={handleInputChange} required />
             </div>
             <div className="form-field">
               <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="Email"
-                placeholder="Votre email"
-                value={formData.Email}
-                onChange={handleInputChange}
-                required
-              />
+              <input type="email" id="email" name="Email" value={formData.Email} onChange={handleInputChange} required />
             </div>
             <div className="form-field">
               <label htmlFor="Phone">Numéro de téléphone</label>
-              <input
-                type="tel"
-                id="phone"
-                name="Phone"
-                placeholder="Votre numéro"
-                value={formData.Phone}
-                onChange={handleInputChange}
-                required
-              />
+              <input type="tel" id="phone" name="Phone" value={formData.Phone} onChange={handleInputChange} required />
+            </div>
+            <div className="form-field">
+              <label htmlFor="birthDate">Date de naissance</label>
+              <input type="date" id="birthDate" name="BirthDate" value={formData.BirthDate} onChange={handleInputChange} required />
             </div>
             <div className="form-field">
               <label htmlFor="password">Mot de passe</label>
-              <input
-                type="password"
-                id="password"
-                name="Password"
-                placeholder="Votre mot de passe"
-                value={formData.Password}
-                onChange={handleInputChange}
-                required
-              />
+              <input type="password" id="password" name="Password" value={formData.Password} onChange={handleInputChange} required />
             </div>
             <div className="form-field">
               <label htmlFor="confirmePassword">Confirmer le mot de passe</label>
-              <input
-                type="password"
-                id="confirmePassword"
-                name="ConfirmePassword"
-                placeholder="Confirmer le mot de passe"
-                value={formData.ConfirmePassword}
-                onChange={handleInputChange}
-                required
-              />
+              <input type="password" id="confirmePassword" name="ConfirmePassword" value={formData.ConfirmePassword} onChange={handleInputChange} required />
             </div>
-
-        
             <div className="form-field">
               <label htmlFor="role">Rôle</label>
-              <select
-                name="Role"
-                id="role"
-                value={formData.Role}
-                onChange={handleInputChange}
-              >
+              <select name="Role" id="role" value={formData.Role} onChange={handleInputChange}>
                 <option value="Donor">Donneur</option>
                 <option value="Admin">Admin</option>
+                <option value="Center">Centre de transfusion</option>
               </select>
             </div>
-
             <button type="submit" className="cta-button">S'inscrire</button>
           </form>
 
@@ -168,41 +149,7 @@ const SignupPage = () => {
           </div>
         </div>
       </div>
-      
-      <div className="footer">
-  <div className="footer-section logo-section">
-    <img src={logo} alt="Logo" />
-  </div>
-
-  <div className="footer-section">
-    <h4>Liens utiles</h4>
-    <ul>
-        <li><Link to="/about">À propos</Link></li>
-        <li>< Link to="/evenements">Événements</Link></li>
-    </ul>
-  </div>
-
-  <div className="footer-section">
-    <h4>Ressources</h4>
-    <ul>
-      <li><Link to="/faq">FAQ</Link></li>
-      <li><Link to="/temoignages">Témoignages</Link></li>
-    </ul>
-  </div>
-
-  <div className="footer-section">
-    <h4>Abonnez-vous</h4>
-    <ul>
-      <li><Link to="/reseaux-sociaux">Réseaux sociaux</Link></li>
-      <li><Link to="/signup">S'inscrire</Link></li>
-    </ul>
-  </div>
-</div>
-
-      
-        
-      </div>
-  
+    </div>
   );
 };
 

@@ -1,55 +1,112 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import SignupPage from './pages/DonatePage';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
-import ThankYouPage from './pages/ThankYouPage';
-import ContactPage from './pages/ContactPage';
-import AboutPage from './pages/AboutPage';
-import Donor from './pages/Donor';
-<<<<<<< HEAD
-import PrivateRoute from './pages/PrivateRoute'; 
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
-<<<<<<< HEAD
-import FAQ from './pages/FAQ';
-=======
+import Dashboard from './pages/Dashboard';
+import PrivateRoute from './pages/PrivateRoute';
+import DonorDashboard from './pages/DonorDashboard';
+import CenterNavbar from './components/Navbar2'; // ta navbar spéciale centre
+import Stocks from './pages/Stocks';
+import Dons from './pages/Dons';
+import Distribution from './pages/Distribution';
+import Demandes from './pages/Demandes';
+import RendezVous from './pages/RendezVous';
+import Parametres from './pages/Parametres';
+import Avis from './pages/Avis';
+import Aide from './pages/Aide';
 
-=======
-import DonationAppointment from './pages/DonationAppointment';
-import AboutDonation from './pages/AboutDonation';
-import BecomeDonor from './pages/BecomeDonor';
-import PrivateRoute from './pages/PrivateRoute'; // 👈 Import
->>>>>>> c1bd5f40 (Ajouter les fonctionnalite de buttons)
-
->>>>>>> f479437d4d8a3073af487aaca782a5e5c0d8ecba
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/faq" element={<FAQ />} />
+        {/* Route par défaut */}
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/thankyou" element={<ThankYouPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/about" element={<AboutPage />} />
-<<<<<<< HEAD
-        
-         <Route path="/forgot" element={<ForgotPasswordPage/>}/>
-         
-=======
-        <Route path="/donation-appointment" element={<DonationAppointment />} />
-        <Route path="/become-donor" element={<BecomeDonor />} />
-        <Route path="/about-donation" element={<AboutDonation />} />
-        {/* 🔐 Route protégée */}
->>>>>>> c1bd5f40 (Ajouter les fonctionnalite de buttons)
+
+        {/* Route protégée pour Admin */}
         <Route
-          path="/donor"
+          path="/admin-dashboard"
           element={
-            <PrivateRoute roleAllowed="Donor">
-              <Donor />
+            <PrivateRoute>
+              <Dashboard />
             </PrivateRoute>
           }
         />
+
+        {/* Dashboard pour donneur */}
+        <Route path="/donor-dashboard" element={<DonorDashboard />} />
+
+        {/* Routes pour Centre de Don sans CenterLayout */}
+        <Route
+          path="/center-dashboard"
+          element={
+            <>
+              <CenterNavbar />
+              <div className="main-content">
+                <h1>Bienvenue sur le tableau de bord du Centre</h1>
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/center-dashboard/stocks"
+          element={
+            <>
+              <CenterNavbar />
+              <div className="main-content">
+                <Stocks />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/center-dashboard/dons"
+          element={
+            <>
+              <CenterNavbar />
+              <div className="main-content">
+                <Dons />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/center-dashboard/distribution"
+          element={
+            <>
+              <CenterNavbar />
+              <div className="main-content">
+                <Distribution />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/center-dashboard/demandes"
+          element={
+            <>
+              <CenterNavbar />
+              <div className="main-content">
+                <Demandes />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/center-dashboard/rendezvous"
+          element={
+            <>
+              <CenterNavbar />
+              <div className="main-content">
+                <RendezVous />
+              </div>
+            </>
+          }
+        />
+
+        {/* Routes générales */}
+        <Route path="/parametres" element={<Parametres />} />
+        <Route path="/avis" element={<Avis />} />
+        <Route path="/aide" element={<Aide />} />
       </Routes>
     </Router>
   );

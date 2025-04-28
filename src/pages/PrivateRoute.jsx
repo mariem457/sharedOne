@@ -1,17 +1,16 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ children, roleAllowed }) => {
-  const token = localStorage.getItem("token");
-  const role = localStorage.getItem("role");
+function PrivateRoute({ children, allowedRoles }) {
+  const userRole = localStorage.getItem('userRole');
 
-  // 🔒 Si pas connecté ou rôle incorrect, redirige vers login
-  if (!token || role !== roleAllowed) {
-    return <Navigate to="/login" />;
+  // Vérifie que le rôle de l'utilisateur est autorisé
+  if (allowedRoles.includes(userRole)) {
+    return children;
   }
 
-  // ✅ Sinon, affiche la page demandée
-  return children;
-};
+  // Sinon, redirige vers login
+  return <Navigate to="/login" />;
+}
 
 export default PrivateRoute;
