@@ -1,7 +1,7 @@
 // src/components/Demandes.jsx
 
 import React, { useState } from 'react';
-import '../style.css';
+import './style.css';
 
 function Demandes() {
   const [demandes, setDemandes] = useState([

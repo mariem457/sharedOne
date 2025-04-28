@@ -1,7 +1,7 @@
 // src/pages/Dons.jsx
 
 import React, { useState } from 'react';
-import '../style.css';
+import './style.css';
 
 function Dons() {
   const [donsData, setDonsData] = useState([

@@ -94,7 +94,7 @@ const SignupPage = () => {
 
   return (
     <div>
-      <nav className="navbar">
+      <nav className="navbar22">
         <div className="logo"><img src={logo} alt="logo" /></div>
         <div className="hhh">
           <ul>

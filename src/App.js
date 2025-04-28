@@ -1,54 +1,87 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Pages publiques
+import HomePage from './pages/HomePage';
+import SignupPage from './pages/DonatePage';
 import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Dashboard';
+import ThankYouPage from './pages/ThankYouPage';
+import ContactPage from './pages/ContactPage';
+import AboutPage from './pages/AboutPage';
+import FAQ from './pages/FAQ';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import DonationAppointment from './pages/DonationAppointment';
+import AboutDonation from './pages/AboutDonation';
+import BecomeDonor from './pages/BecomeDonor';
+
+// Pages protégées
 import PrivateRoute from './pages/PrivateRoute';
+import Donor from './pages/Donor';
+import Dashboard from './pages/Dashboard';
 import DonorDashboard from './pages/DonorDashboard';
-import CenterNavbar from './components/Navbar2'; // ta navbar spéciale centre
+import CenterDashboard from './pages/CenterDashboard'; // Centre de transfusion
+import CenterNavbar from './pages/Navbar2'; // Navbar pour le Centre de transfusion
 import Stocks from './pages/Stocks';
 import Dons from './pages/Dons';
 import Distribution from './pages/Distribution';
 import Demandes from './pages/Demandes';
-import RendezVous from './pages/RendezVous';
-import Parametres from './pages/Parametres';
-import Avis from './pages/Avis';
-import Aide from './pages/Aide';
+import RendezVous from './pages/RendezVous2';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Route par défaut */}
-        <Route path="/" element={<Navigate to="/login" />} />
+        {/* Routes publiques */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/thankyou" element={<ThankYouPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/forgot" element={<ForgotPasswordPage />} />
+        <Route path="/donation-appointment" element={<DonationAppointment />} />
+        <Route path="/become-donor" element={<BecomeDonor />} />
+        <Route path="/about-donation" element={<AboutDonation />} />
 
-        {/* Route protégée pour Admin */}
+        {/* Routes protégées pour Donneur */}
+        <Route
+          path="/donor"
+          element={
+            <PrivateRoute roleAllowed="Donor">
+              <Donor />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Dashboard pour Admin */}
         <Route
           path="/admin-dashboard"
           element={
-            <PrivateRoute>
+            <PrivateRoute roleAllowed="Admin">
               <Dashboard />
             </PrivateRoute>
           }
         />
 
-        {/* Dashboard pour donneur */}
+        {/* Dashboard pour Donneur */}
         <Route path="/donor-dashboard" element={<DonorDashboard />} />
 
-        {/* Routes pour Centre de Don sans CenterLayout */}
+        {/* Routes pour Centre de Don */}
         <Route
           path="/center-dashboard"
           element={
             <>
+              {/* Si vous ne voulez pas le navbar ici, supprimez <CenterNavbar /> */}
               <CenterNavbar />
               <div className="main-content">
-                <h1>Bienvenue sur le tableau de bord du Centre</h1>
+                <CenterDashboard />
               </div>
             </>
           }
         />
         <Route
-          path="/center-dashboard/stocks"
+          path="/stocks"
           element={
             <>
               <CenterNavbar />
@@ -59,7 +92,7 @@ function App() {
           }
         />
         <Route
-          path="/center-dashboard/dons"
+          path="/dons"
           element={
             <>
               <CenterNavbar />
@@ -70,7 +103,7 @@ function App() {
           }
         />
         <Route
-          path="/center-dashboard/distribution"
+          path="/distribution"
           element={
             <>
               <CenterNavbar />
@@ -81,7 +114,7 @@ function App() {
           }
         />
         <Route
-          path="/center-dashboard/demandes"
+          path="/demandes"
           element={
             <>
               <CenterNavbar />
@@ -92,7 +125,7 @@ function App() {
           }
         />
         <Route
-          path="/center-dashboard/rendezvous"
+          path="/rendezvous"
           element={
             <>
               <CenterNavbar />
@@ -102,11 +135,6 @@ function App() {
             </>
           }
         />
-
-        {/* Routes générales */}
-        <Route path="/parametres" element={<Parametres />} />
-        <Route path="/avis" element={<Avis />} />
-        <Route path="/aide" element={<Aide />} />
       </Routes>
     </Router>
   );

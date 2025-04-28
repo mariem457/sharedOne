@@ -1,7 +1,7 @@
 // src/pages/Distribution.jsx
 
 import React, { useState } from 'react';
-import '../style.css';
+import './style.css';
 
 function Distribution() {
   const [distributionData, setDistributionData] = useState([
