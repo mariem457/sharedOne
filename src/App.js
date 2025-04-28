@@ -54,15 +54,15 @@ function App() {
           }
         />
 
-        {/* Dashboard pour Admin */}
-        <Route
-          path="/admin-dashboard"
-          element={
-            <PrivateRoute roleAllowed="Admin">
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
+     {/* Dashboard pour Admin */}
+<Route
+  path="/admin-dashboard"
+  element={
+    <PrivateRoute allowedRoles={['Admin']}>
+      <Dashboard />
+    </PrivateRoute>
+  }
+/>
 
         {/* Dashboard pour Donneur */}
         <Route path="/donor-dashboard" element={<DonorDashboard />} />
